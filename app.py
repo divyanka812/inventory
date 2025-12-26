@@ -9,6 +9,7 @@ import models
 from db import db
 from db import db
 
+from dotenv import load_dotenv
 from resources.item import blp as ItemBluePrint
 from resources.store import blp as StoreBluePrint
 from resources.tag import blp as TagBluePrint
@@ -18,6 +19,8 @@ from blocklist import BLOCK_LIST
 
 def create_app(db_url=None):
     app = Flask(__name__)
+    load_dotenv()
+
     app.config["PROPOGATE_EXCEPTIONS"] = True
     app.config["API_TITLE"] = "Stores Rest API"
     app.config["API_VERSION"] = "v1"

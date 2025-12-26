@@ -2,6 +2,21 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "5000:80"
     volumes:
       - .:/app1
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+  db:
+    image: postgres:18
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=app1
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+volumes:
+  postgres_data:      

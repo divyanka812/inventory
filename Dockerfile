@@ -1,6 +1,10 @@
 FROM python:3.10
+
 WORKDIR /app1
+
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
-COPY . .
-CMD ["/bin/bash", "docker-entrypoint.sh"]
+COPY docker-entrypoint.sh .
+
+RUN chmod +x docker-entrypoint.sh
+
+CMD ["/app1/docker-entrypoint.sh"]
